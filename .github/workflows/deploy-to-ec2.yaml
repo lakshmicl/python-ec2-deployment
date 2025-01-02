@@ -23,6 +23,7 @@ jobs:
       # Copy files to EC2
       - name: Copy files to EC2
         run: |
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_PUBLIC_IP }} "rm -rf /home/ec2-user/python-app"
           scp -o StrictHostKeyChecking=no -r . ec2-user@${{ secrets.EC2_PUBLIC_IP }}:/home/ec2-user/python-app
 
       # Install dependencies and run the app
